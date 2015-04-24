@@ -4,19 +4,8 @@ require "shirokuro/ecs/game_object"
 require "shirokuro/ecs/game_object_manager"
 require "shirokuro/ecs/id_generator"
 
-module Shirokuro
-  # Your code goes here...
-
-
-end
+require "shirokuro/math/vec2"
+require "shirokuro/math/transform"
 
 module Shirokuro
-
-	class Greeter
-		def greet
-			"hello"
-
-		end
-	end
-
 end

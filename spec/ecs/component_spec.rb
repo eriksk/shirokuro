@@ -31,6 +31,14 @@ describe Shirokuro::Component do
 		expect(Shirokuro::Component.new).to_not respond_to(:draw).with(0).arguments
 	end
 
+	it "can remove itself from the game_object" do
+		component = Shirokuro::Component.new
+		game_object = Shirokuro::GameObject.new "name", 0
+		game_object.add_component component
+		component.remove(component)
+		expect(game_object.instance_variable_get(:@components).size).to be(0)
+	end
+
 	it "is assigned the game_object when added to one" do
 		component = Shirokuro::Component.new
 		game_object = Shirokuro::GameObject.new "name", 0

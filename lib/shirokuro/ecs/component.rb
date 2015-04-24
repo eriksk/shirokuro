@@ -11,6 +11,10 @@ module Shirokuro
 			@game_object.get_component type
 		end
 
+		def remove component
+			@game_object.remove_component component
+		end
+
 		def update dt
 		end
 

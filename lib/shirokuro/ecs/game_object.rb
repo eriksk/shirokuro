@@ -22,6 +22,10 @@ module Shirokuro
 			@components.collect{|x| x if x.is_a?(type)}
 		end
 
+		def remove_component component
+			@components.delete component
+		end
+
 		def start
 			@components.each{|x| x.start }
 		end

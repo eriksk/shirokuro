@@ -24,6 +24,10 @@ describe Shirokuro::GameObject do
 		expect(Shirokuro::GameObject.new("name", 0)).to respond_to(:add_component).with(1).argument
 	end
 
+	it "can remove components" do
+		expect(Shirokuro::GameObject.new("name", 0)).to respond_to(:remove_component).with(1).argument
+	end
+
 	it "can get a component by type" do
 		game_object = Shirokuro::GameObject.new  "name", 0
 		component = ConcreteComponent.new
