@@ -14,6 +14,13 @@ describe Shirokuro::GameObjectManager do
 		expect(Shirokuro::GameObjectManager.new.create("my_obj").name).to eq("my_obj")
 	end
 
+	it "starts a gameobject when created if manager alread has started" do
+		manager = Shirokuro::GameObjectManager.new
+		manager.start
+		expect(Shirokuro::GameObject.any_instance.stub).to receive(:start)
+		obj = manager.create "obj"
+	end
+
 	it "generates a unique id for all new game_objects created" do
 		manager= Shirokuro::GameObjectManager.new
 		expect(manager.create("obj_1").id).to eq(1)
