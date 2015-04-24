@@ -16,14 +16,16 @@ module Shirokuro
 		end
 
 		def * other
+			if other.is_a?(Numeric)
+				return Vec2.new(@x * other, @y * other)
+			end
 			Vec2.new(@x * other.x, @y * other.y)
 		end
 
-		def *(scalar)
-			Vec2.new(@x * scalar, @y * scalar)
-		end
-
 		def / other
+			if other.is_a?(Numeric)
+				return Vec2.new(@x / other, @y / other)
+			end
 			Vec2.new(@x / other.x, @y / other.y)
 		end
 	end

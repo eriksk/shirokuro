@@ -41,5 +41,9 @@ describe Shirokuro::Vec2 do
 		expect(multiplied.y).to eq(300)
 	end
 
-	it "can be devided using a scalar"
+	it "can be devided using a scalar" do
+		divided = Shirokuro::Vec2.new(400, 600) / 2.0
+		expect(divided.x).to eq(200)
+		expect(divided.y).to eq(300)
+	end
 end
