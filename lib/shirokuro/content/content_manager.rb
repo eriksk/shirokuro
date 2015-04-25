@@ -1,6 +1,8 @@
 module SK
 	class ContentManager
 
+		attr_accessor :content_root
+
 		def initialize window, content_root, nearest_filtering = false
 			@window = window
 			@cache = {}
