@@ -34,6 +34,8 @@ require "shirokuro/standard_components/tmx/tmx_map_layer_object"
 
 require "shirokuro/standard_components/physics/rigid_body"
 require "shirokuro/standard_components/physics/box_collider"
+require "shirokuro/standard_components/physics/circle_collider"
+require "shirokuro/standard_components/physics/polygon_collider"
 
 module SK
 end
