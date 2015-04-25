@@ -19,6 +19,10 @@ describe SK::Component do
 		expect(SK::Component.new).to respond_to(:update)
 	end
 
+	it "can be started" do
+		expect(SK::Component.new).to respond_to(:start)
+	end
+
 	it "can be updated and takes one parameter" do
 		expect(SK::Component.new).to respond_to(:update).with(1).argument
 	end
@@ -29,6 +33,14 @@ describe SK::Component do
 
 	it "can not be drawn without context" do
 		expect(SK::Component.new).to_not respond_to(:draw).with(0).arguments
+	end
+
+	it "can get a transform" do
+		component = SK::Component.new()
+		game_object = SK::GameObject.new("name", 0)
+		game_object.add_component component
+
+		expect(component.transform).to be(game_object.transform)
 	end
 
 	it "can remove itself from the game_object" do

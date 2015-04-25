@@ -15,6 +15,13 @@ module SK
 			@game_object.remove_component component
 		end
 
+		def transform
+			@game_object.transform
+		end
+
+		def start
+		end
+
 		def update dt
 		end
 
