@@ -26,18 +26,46 @@ class Window < Gosu::Window
 				box.add_component(SK::RigidBody.new)
 				box.add_component(SK::BoxCollider.new(6, 6))
 				box.add_component(SK::ShapeRenderer.new)
-				box.get_component(SK::BoxCollider).restitution = 0.95 # make boxes really bouncy
-				box.transform.position.x = j * 8
+				box.get_component(SK::BoxCollider).restitution = 0.95 # make balls really bouncy
+				box.transform.position.x = (j * 8) - 48
 				box.transform.position.y = -(9*8) + 4 + (i * 8)
 			end
 		end
 
+		(0..6).each do |i|
+			((-i)..(i - 1)).each do |j|
+				box = @manager.create("box")
+				box.add_component(SK::RigidBody.new)
+				box.add_component(SK::CircleCollider.new(3))
+				box.add_component(SK::ShapeRenderer.new)
+				box.get_component(SK::CircleCollider).restitution = 0.95 # make boxes really bouncy
+				box.transform.position.x = (j * 8) + 48
+				box.transform.position.y = -(9*8) + 4 + (i * 8)
+			end
+		end
+
+		# big heavy box 
 		box = @manager.create("large_box")
 		box.add_component(SK::RigidBody.new)
 		box.add_component(SK::BoxCollider.new(32, 16))
 		box.add_component(SK::ShapeRenderer.new)
 		box.get_component(SK::RigidBody).mass = 10.0
 		box.transform.position.y = -300
+
+		# free form polygon
+		poly = @manager.create("polygon")
+		poly.add_component(SK::RigidBody.new)
+		poly.add_component(SK::PolygonCollider.new([
+			CP::Vec2.new(-13, -12),
+			CP::Vec2.new(-23, 14),
+			CP::Vec2.new(0, 32),
+			CP::Vec2.new(14, 0),
+			CP::Vec2.new(20, -18)
+
+		]))
+		poly.add_component(SK::ShapeRenderer.new)
+		poly.get_component(SK::RigidBody).mass = 10.0
+		poly.transform.position.y = -400
 
 		@manager.start
 	end
