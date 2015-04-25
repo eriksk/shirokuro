@@ -8,10 +8,16 @@ module SK
 		end
 
 		def + other
+			if other.is_a?(Numeric)
+				return Vec2.new(@x + other, @y + other)
+			end
 			Vec2.new(@x + other.x, @y + other.y)
 		end
 
 		def - other
+			if other.is_a?(Numeric)
+				return Vec2.new(@x - other, @y - other)
+			end
 			Vec2.new(@x - other.x, @y - other.y)
 		end
 

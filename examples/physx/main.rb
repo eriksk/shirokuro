@@ -1,11 +1,10 @@
 require 'gosu'
 require_relative '../../lib/shirokuro'
-require 'json'
 
 class Window < Gosu::Window
 	def initialize width, height
 		super(width, height, false)
-		self.caption = "SK Sprite Animation Example"
+		self.caption = "SK Physics Example"
 
 		@content = SK::ContentManager.new(self, "../shared/content/", true)
 		@manager = SK::GameObjectManager.new
@@ -13,16 +12,33 @@ class Window < Gosu::Window
 		@cam = SK::Camera.new(SK::Vec2.new(width, height))
 		cam = @manager.create("cam")
 		cam.add_component(@cam)
-		@cam.set_zoom(2.0)
+		@cam.set_zoom(1.0)
 
-		map = @manager.create("map")
-		map.transform.position.x -= 256
-		map.transform.position.y -= 256
+		floor = @manager.create("floor")
+		floor.add_component(SK::RigidBody.new())
+		floor.add_component(SK::BoxCollider.new(256, 32))
+		floor.add_component(SK::ShapeRenderer.new)
+		floor.get_component(SK::RigidBody).static = true
 
-		tmx_map = SK::TMX::Map.new(JSON.load(File.open("#{@content.content_root}maps/stage2.json").read))
-		map.add_component(SK::MapComponent.new(tmx_map))
-		map.add_component(SK::MapRenderer.new(@content.load_tiles("gfx/tileset.png", 32, 32)))
-		
+		(0..6).each do |i|
+			((-i)..(i - 1)).each do |j|
+				box = @manager.create("box")
+				box.add_component(SK::RigidBody.new)
+				box.add_component(SK::BoxCollider.new(6, 6))
+				box.add_component(SK::ShapeRenderer.new)
+				box.get_component(SK::BoxCollider).restitution = 0.95 # make boxes really bouncy
+				box.transform.position.x = j * 8
+				box.transform.position.y = -(9*8) + 4 + (i * 8)
+			end
+		end
+
+		box = @manager.create("large_box")
+		box.add_component(SK::RigidBody.new)
+		box.add_component(SK::BoxCollider.new(32, 16))
+		box.add_component(SK::ShapeRenderer.new)
+		box.get_component(SK::RigidBody).mass = 10.0
+		box.transform.position.y = -300
+
 		@manager.start
 	end
 
@@ -66,5 +82,5 @@ class Window < Gosu::Window
 	end
 end
 
-window = Window.new(1024, 1024)
+window = Window.new(512, 512)
 window.show

@@ -1,7 +1,7 @@
 module SK
 	class GameObject
 
-		attr_reader :name, :id, :children
+		attr_reader :name, :id, :children, :manager
 		attr_accessor :parent, :transform
 
 		def initialize name, id
@@ -11,6 +11,7 @@ module SK
 			@children = []
 			@parent = nil
 			@transform = Transform.new
+			@manager = nil
 		end
 
 		def add_component component
@@ -40,6 +41,10 @@ module SK
 
 		def remove_component component
 			@components.delete component
+		end
+
+		def physics
+			@manager.physics
 		end
 
 		def start

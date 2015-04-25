@@ -24,12 +24,12 @@ module SK
 			return load_image(name)
 		end
 
-		def load_tiles(name, tile_width, tile_height)
+		def load_tiles(name, tile_width, tile_height, tileable = true)
 			asset_name = "#{@content_root}#{name}"
 			unless @cache[asset_name] == nil
 				return @cache[asset_name]
 			end
-			@cache[asset_name] = Gosu::Image.load_tiles(@window, asset_name, tile_width, tile_height, false)
+			@cache[asset_name] = Gosu::Image.load_tiles(@window, asset_name, tile_width, tile_height, tileable)
 
 			if @nearest_filtering
 				@cache[asset_name].each{ |image|

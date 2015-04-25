@@ -9,6 +9,9 @@ module SK
 
 		def start
 			@map = get_component(MapComponent)
+			if @map == nil
+				raise "MapComponent required for MapRenderer"
+			end
 		end
 		
 		def draw context
@@ -21,7 +24,8 @@ module SK
 							cell = layer.get(col, row)
 							if cell > -1
 								@images[cell].draw(
-									map.tile_width * col, map.tile_height * row, 0, 1, 1, layer.color)
+									transform.position.x + (map.tile_width * col), 
+									transform.position.y + (map.tile_height * row), 0, 1, 1, layer.color)
 							end
 						end
 					end

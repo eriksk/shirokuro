@@ -19,6 +19,10 @@ module SK
 			@game_object.transform
 		end
 
+		def physics
+			@game_object.physics
+		end
+
 		def start
 		end
 
