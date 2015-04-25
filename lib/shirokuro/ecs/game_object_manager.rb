@@ -1,4 +1,4 @@
-module Shirokuro
+module SK
 	class GameObjectManager
 
 		def initialize

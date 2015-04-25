@@ -4,8 +4,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'shirokuro/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "shirokuro"
-  spec.version       = Shirokuro::VERSION
+  spec.name          = "Shirokuro"
+  spec.version       = SK::VERSION
   spec.authors       = ["erikskogl"]
   spec.email         = ["erikskoglund88@gmail.com"]
   spec.summary       = "Gosu helper lib"
@@ -17,6 +17,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
+
+  spec.add_dependency "gosu"
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"

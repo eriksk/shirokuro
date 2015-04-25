@@ -1,4 +1,4 @@
-module Shirokuro
+module SK
 	class Component
 
 		attr_accessor :game_object

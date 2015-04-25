@@ -1,17 +1,33 @@
-module Shirokuro
+module SK
 	class GameObject
 
-		attr_reader :name, :id
+		attr_reader :name, :id, :children
+		attr_accessor :parent, :transform
 
 		def initialize name, id
 			@name = name
 			@id = id
 			@components = []
+			@children = []
+			@parent = nil
+			@transform = Transform.new
 		end
 
 		def add_component component
 			component.game_object = self
 			@components << component
+		end
+
+		def add_child game_object
+			if game_object.parent != nil
+				game_object.parent.remove_child game_object
+			end
+			game_object.parent = self
+			@children << game_object
+		end
+
+		def remove_child game_object
+			@children.delete game_object
 		end
 
 		def get_component type

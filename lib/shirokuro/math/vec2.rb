@@ -1,4 +1,4 @@
-module Shirokuro
+module SK
 	class Vec2
 		attr_accessor :x, :y
 
