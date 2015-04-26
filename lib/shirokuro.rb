@@ -13,6 +13,7 @@ require "shirokuro/ecs/game_object_manager"
 require "shirokuro/ecs/id_generator"
 
 require "shirokuro/content/content_manager"
+require "shirokuro/audio/audio_manager"
 
 require "shirokuro/standard_components/cameras/camera"
 
