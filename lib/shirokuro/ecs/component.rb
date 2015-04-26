@@ -1,10 +1,12 @@
 module SK
 	class Component
 
-		attr_accessor :game_object
+		attr_accessor :game_object, :layer, :order_in_layer
 
 		def initialize
 			@game_object = nil
+			@layer = 0
+			@order_in_layer = 0
 		end
 
 		def get_component type

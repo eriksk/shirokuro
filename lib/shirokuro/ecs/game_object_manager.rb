@@ -37,7 +37,15 @@ module SK
 		end
 
 		def draw context
-			@game_objects.each{ |x| x.draw context }
+			components = @game_objects.collect{|obj| obj.components }
+				.flatten.collect{|c| c }
+				.sort_by{ |c|
+					[c.layer, c.order_in_layer]
+				}
+
+			components.each do |component|
+				component.draw context
+			end
 		end
 	end
 end

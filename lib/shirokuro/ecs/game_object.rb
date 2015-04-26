@@ -1,7 +1,7 @@
 module SK
 	class GameObject
 
-		attr_reader :name, :id, :children, :manager
+		attr_reader :name, :id, :children, :manager, :components
 		attr_accessor :parent, :transform
 
 		def initialize name, id
@@ -53,10 +53,6 @@ module SK
 
 		def update dt
 			@components.each{|x| x.update dt }
-		end
-
-		def draw context
-			@components.each{|x| x.draw context }
 		end
 	end
 end
