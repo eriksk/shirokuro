@@ -1,6 +1,6 @@
 module SK
 	class AnimationComponent < Component
-		
+
 		attr_accessor :animations, :current
 
 		def initialize animations
@@ -19,10 +19,10 @@ module SK
 		def frame
 			@animations[@current].frame
 		end
-		
+
 		def update dt
 			@animations[@current].update dt
 		end
-		
+
 	end
 end

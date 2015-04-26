@@ -4,6 +4,7 @@ module SK
 		attr_accessor :images
 
 		def initialize images
+			super()
 			@images = images
 		end
 
@@ -13,7 +14,7 @@ module SK
 				raise "MapComponent required for MapRenderer"
 			end
 		end
-		
+
 		def draw context
 			map = @map.map
 
@@ -24,7 +25,7 @@ module SK
 							cell = layer.get(col, row)
 							if cell > -1
 								@images[cell].draw(
-									transform.position.x + (map.tile_width * col), 
+									transform.position.x + (map.tile_width * col),
 									transform.position.y + (map.tile_height * row), 0, 1, 1, layer.color)
 							end
 						end

@@ -4,14 +4,15 @@ module SK
 		attr_accessor :vertices, :friction, :restitution, :shape
 
 		def initialize vertices
+			super()
 			@vertices = vertices
 			@friction = 0.4
 			@restitution = 0.1
 		end
-		
+
 		def start
 			rigid_body = get_component(RigidBody)
-			
+
 			if rigid_body == nil
 				raise "RigidBody required for BoxCollider"
 			end

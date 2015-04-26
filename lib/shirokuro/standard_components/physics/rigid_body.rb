@@ -1,16 +1,17 @@
 module SK
 	class RigidBody < Component
-		
+
 		attr_accessor :mass, :inertia, :static, :fixed_rotation
 		attr_reader :body
 
 		def initialize
+			super()
 			@mass = 1.0
 			@inertia = 1.0
 			@static = false
 			@fixed_rotation = false
 		end
-		
+
 		def start
 			if @static
 				@body = CP::Body.new_static()
@@ -44,7 +45,7 @@ module SK
 		def add_torque torque
 			@body.t += torque
 		end
-		
+
 		def update dt
 			if @fixed_rotation
 				@body.a = 0.0

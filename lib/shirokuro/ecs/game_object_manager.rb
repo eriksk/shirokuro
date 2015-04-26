@@ -5,7 +5,7 @@ module SK
 
 		def initialize
 			@id_generator = IdGenerator.new
-			@game_objects = []			
+			@game_objects = []
 			@started = false
 
 			@physics = Physics.new
@@ -37,11 +37,20 @@ module SK
 		end
 
 		def draw context
-			components = @game_objects.collect{|obj| obj.components }
-				.flatten.collect{|c| c }
-				.sort_by{ |c|
-					[c.layer, c.order_in_layer]
-				}
+			components = []
+
+			# only draw renderable objects
+			@game_objects.each do |obj|
+				obj.components.each do |c|
+					if c.layer
+						components << c
+					end
+				end
+			end
+
+			components = components.sort_by{ |a|
+					[a.layer, a.order_in_layer]
+			}
 
 			components.each do |component|
 				component.draw context

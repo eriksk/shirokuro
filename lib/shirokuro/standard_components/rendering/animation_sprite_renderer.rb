@@ -4,6 +4,7 @@ module SK
 		attr_accessor :origin, :images
 
 		def initialize images
+			super()
 			@images = images
 			@origin = Vec2.new(0.5, 0.5)
 		end
@@ -21,6 +22,6 @@ module SK
 				Gosu::Color::WHITE
 			)
 		end
-		
+
 	end
 end

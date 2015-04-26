@@ -4,22 +4,23 @@ module SK
 		attr_accessor :width, :height, :friction, :restitution, :shape
 
 		def initialize width, height
+			super()
 			@width = width
 			@height = height
 			@friction = 0.4
 			@restitution = 0.1
 		end
-		
+
 		def start
 			rigid_body = get_component(RigidBody)
-			
+
 			if rigid_body == nil
 				raise "RigidBody required for BoxCollider"
 			end
 
 			half_width = @width / 2.0
 			half_height = @height / 2.0
-			
+
 			vertices = [
 				CP::Vec2.new(-half_width, -half_height),
 				CP::Vec2.new(-half_width, half_height),

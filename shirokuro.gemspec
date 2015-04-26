@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'shirokuro/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "Shirokuro"
+  spec.name          = "shirokuro"
   spec.version       = SK::VERSION
   spec.authors       = ["erikskogl"]
   spec.email         = ["erikskoglund88@gmail.com"]

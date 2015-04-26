@@ -1,14 +1,15 @@
 module SK
 	class ShapeRenderer < Component
 		def initialize
+			super()
 		end
-		
+
 		def draw context
 			rigid_body = get_component(RigidBody)
 			color = rigid_body.static ? Gosu::Color::BLUE : Gosu::Color::GREEN
-			
+
 			collider = get_component(BoxCollider)
-			
+
 			unless collider == nil
 				half_width = collider.width / 2.0
 				half_height = collider.height / 2.0
@@ -37,7 +38,7 @@ module SK
 						)
 					end
 				end
-			end 
+			end
 
 			collider = get_component(CircleCollider)
 
@@ -60,10 +61,10 @@ module SK
 								context.draw_line(
 									x, y, color,
 									_x, _y, color
-								)			
+								)
 								x = _x
-								y = _y	
-							end			
+								y = _y
+							end
 						end
 					end
 				end
@@ -81,7 +82,7 @@ module SK
 							else
 								p_next = collider.vertices[i + 1]
 							end
-							
+
 							context.draw_line(
 								p.x, p.y, color,
 								p_next.x, p_next.y, color
@@ -90,6 +91,6 @@ module SK
 					end
 				end
 			end
-		end		
+		end
 	end
 end

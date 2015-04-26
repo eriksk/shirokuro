@@ -4,6 +4,7 @@ module SK
 		attr_accessor :origin, :image
 
 		def initialize image
+			super()
 			@image = image
 			@origin = Vec2.new(0.5, 0.5)
 		end
