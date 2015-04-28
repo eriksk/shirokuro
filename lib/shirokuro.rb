@@ -2,6 +2,7 @@ require 'chipmunk'
 
 require "shirokuro/math/matrix"
 require "shirokuro/math/vec2"
+require "shirokuro/math/rect"
 require "shirokuro/math/transform"
 
 require "shirokuro/physics/physics"

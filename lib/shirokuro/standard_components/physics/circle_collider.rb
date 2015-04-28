@@ -18,6 +18,7 @@ module SK
 			end
 
 			@shape = CP::Shape::Circle.new(rigid_body.body, @radius, CP::Vec2.new(0, 0))
+			@shape.object = game_object
 			@shape.u = @friction
 			@shape.e = @restitution
 
@@ -25,6 +26,10 @@ module SK
 			rigid_body.body.i = CP.moment_for_circle(rigid_body.body.m, @radius, @radius, CP::Vec2.new(0, 0))
 
 			physics.space.add_shape(@shape)
+		end
+
+		def before_remove
+			physics.space.remove_shape(@shape)
 		end
 	end
 end

@@ -31,6 +31,16 @@ module SK
 			@children.delete game_object
 		end
 
+		def before_remove
+			@components.each do |component|
+				component.before_remove
+			end
+		end
+
+		def remove
+			@manager.remove self
+		end
+
 		def get_component type
 			@components.find{|x| x.is_a?(type)}
 		end
@@ -45,6 +55,12 @@ module SK
 
 		def physics
 			@manager.physics
+		end
+
+		def on_collision a, b
+			@components.each{ |c|
+				c.on_collision(a, b)
+			}
 		end
 
 		def start

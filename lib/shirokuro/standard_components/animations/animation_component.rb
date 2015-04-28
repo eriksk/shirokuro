@@ -16,6 +16,14 @@ module SK
 			@animations[@current].reset
 		end
 
+		def animation
+			@animations[@current]
+		end
+
+		def get name
+			@animations[name]
+		end
+
 		def frame
 			@animations[@current].frame
 		end

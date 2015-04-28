@@ -25,6 +25,12 @@ module SK
 			@game_object.physics
 		end
 
+		def before_remove
+		end
+
+		def on_collision a, b
+		end
+
 		def start
 		end
 

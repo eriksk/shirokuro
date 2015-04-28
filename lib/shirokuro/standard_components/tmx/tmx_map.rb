@@ -15,6 +15,10 @@ module SK
 					@layers << MapLayer.new(layer)
 				}
 			end
+
+			def collision_layer
+				@layers.find{|x| x.is_collision_layer? }
+			end
 		end
 	end
 end

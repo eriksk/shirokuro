@@ -6,6 +6,7 @@ module SK
 		def initialize
 			@id_generator = IdGenerator.new
 			@game_objects = []
+			@game_objects_scheduled_for_removal = []
 			@started = false
 
 			@physics = Physics.new
@@ -23,7 +24,8 @@ module SK
 		end
 
 		def remove game_object
-			@game_objects.delete game_object
+			## TODO: remove children!!
+			@game_objects_scheduled_for_removal << game_object
 		end
 
 		def start
@@ -34,6 +36,11 @@ module SK
 		def update dt
 			@physics.update dt
 			@game_objects.each{ |x| x.update dt}
+			@game_objects_scheduled_for_removal.each{|o|
+				o.before_remove
+				@game_objects.delete o
+			}
+			@game_objects_scheduled_for_removal.clear
 		end
 
 		def draw context
