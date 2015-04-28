@@ -24,6 +24,9 @@ module SK
 
 	class DefaultCollisionHandler
 		def begin a, b, arbiter
+			unless share_group?(a, b)
+				return false
+			end
 			if a.object.is_a?(GameObject)
 				a.object.on_collision(a, b)
 			end
@@ -31,6 +34,11 @@ module SK
 				b.object.on_collision(a, b)
 			end
 			return true
+		end
+
+		def share_group? a, b
+			# masked collision groups
+			((a.group & b.layers) != 0) && ((b.group & a.layers) != 0)
 		end
 	end
 end

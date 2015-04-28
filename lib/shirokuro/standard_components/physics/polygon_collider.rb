@@ -1,7 +1,7 @@
 module SK
 	class PolygonCollider < Component
 
-		attr_accessor :vertices, :friction, :restitution, :shape
+		attr_accessor :vertices, :friction, :restitution, :shape, :category, :collides_with
 
 		def initialize vertices, offset = nil
 			super()
@@ -9,6 +9,8 @@ module SK
 			@vertices = vertices
 			@friction = 0.4
 			@restitution = 0.1
+			@category = 0
+			@collides_with = 0
 		end
 
 		def start
@@ -28,9 +30,11 @@ module SK
 			end
 
 			@shape = CP::Shape::Poly.new(rigid_body.body, vertices, centroid)
-			@shape.obj = game_object
+			@shape.object = game_object
 			@shape.u = @friction
 			@shape.e = @restitution
+			@shape.group = @category
+			@shape.layers = @collides_with
 
 			# recalculate inertia
 			rigid_body.body.i = CP.moment_for_poly(rigid_body.body.m, @vertices, centroid)

@@ -1,7 +1,7 @@
 module SK
 	class BoxCollider < Component
 
-		attr_accessor :width, :height, :friction, :restitution, :shape, :offset
+		attr_accessor :width, :height, :friction, :restitution, :shape, :offset, :category, :collides_with
 
 		def initialize width, height
 			super()
@@ -10,6 +10,8 @@ module SK
 			@friction = 0.4
 			@restitution = 0.1
 			@offset = CP::Vec2.new(0, 0)
+			@category = 0
+			@collides_with = 0
 		end
 
 		def start
@@ -33,6 +35,8 @@ module SK
 			@shape.object = game_object
 			@shape.u = @friction
 			@shape.e = @restitution
+			@shape.group = @category
+			@shape.layers = @collides_with
 
 			# recalculate inertia
 			rigid_body.body.i = CP.moment_for_box(rigid_body.body.m, @width, @height)
